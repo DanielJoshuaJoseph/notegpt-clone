@@ -1,0 +1,2 @@
+# notegpt-clone
+scriptorim
