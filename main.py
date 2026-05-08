@@ -274,7 +274,7 @@ async def process(data: RequestData):
     try:
         video_id = get_video_id(data.url)
 
-        transcript = YouTubeTranscriptApi().fetch(video_id)
+        transcript = YouTubeTranscriptApi.get_transcript(video_id)
         raw_text = " ".join([t.text for t in transcript])
 
         cleaned = clean_text(raw_text)
