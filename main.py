@@ -274,15 +274,11 @@ async def process(data: RequestData):
     try:
         video_id = get_video_id(data.url)
 
-ytt_api = YouTubeTranscriptApi()
-transcript = ytt_api.fetch(video_id)
+        transcript = YouTubeTranscriptApi().fetch(video_id)
+        raw_text = " ".join([t.text for t in transcript])
 
-raw_text = " ".join(
-    [t['text'] if isinstance(t, dict) else t.text for t in transcript]
-)
-
-cleaned = clean_text(raw_text)
-sentences = get_sentences(cleaned)
+        cleaned = clean_text(raw_text)
+        sentences = get_sentences(cleaned)
 
         if not sentences:
             return JSONResponse(
